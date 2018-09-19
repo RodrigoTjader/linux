@@ -47,6 +47,15 @@
 / {
 	model = "Olimex A64-OLinuXino-2G16G-IND";
 	compatible = "olimex,a64-olinuxino-2g16g-ind", "allwinner,sun50i-a64";
+};
 
-	/* TODO: enable eMMC */
+&mmc2 {
+       pinctrl-names = "default";
+       pinctrl-0 = <&mmc2_pins>;
+       vmmc-supply = <&reg_dcdc1>;
+       vqmmc-supply = <&reg_dcdc1>;
+       bus-width = <8>;
+       non-removable;
+       cap-mmc-hw-reset;
+       status = "okay";
 };
