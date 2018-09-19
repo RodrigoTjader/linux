@@ -47,8 +47,8 @@
 #include <dt-bindings/gpio/gpio.h>
 
 / {
-	model = "Olimex A64-Olinuxino";
-	compatible = "olimex,a64-olinuxino", "allwinner,sun50i-a64";
+	model = "Olimex A64-OLinuXino-1G0G";
+	compatible = "olimex,a64-olinuxino-1g0g", "allwinner,sun50i-a64";
 
 	aliases {
 		ethernet0 = &emac;
@@ -68,11 +68,6 @@
 		enable-active-high;
 		gpio = <&pio 6 9 GPIO_ACTIVE_HIGH>; /* PG9 */
 		status = "okay";
-	};
-
-	wifi_pwrseq: wifi_pwrseq {
-		compatible = "mmc-pwrseq-simple";
-		reset-gpios = <&r_pio 0 2 GPIO_ACTIVE_LOW>; /* PL2 */
 	};
 };
 
@@ -109,24 +104,6 @@
 	disable-wp;
 	bus-width = <4>;
 	status = "okay";
-};
-
-&mmc1 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&mmc1_pins>;
-	vmmc-supply = <&reg_aldo2>;
-	vqmmc-supply = <&reg_dldo4>;
-	mmc-pwrseq = <&wifi_pwrseq>;
-	bus-width = <4>;
-	non-removable;
-	status = "okay";
-
-	rtl8723bs: wifi@1 {
-		reg = <1>;
-		interrupt-parent = <&r_pio>;
-		interrupts = <0 3 IRQ_TYPE_LEVEL_LOW>; /* PL3 */
-		interrupt-names = "host-wake";
-	};
 };
 
 &ohci0 {
